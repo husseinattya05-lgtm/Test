@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Test</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0a0a0a;
+  color: white;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+
+#container {
+  max-width: 90%;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #333;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 1s;
+}
+</style>
+
+</head>
+<body>
+
+<div id="container">
+  <h1 id="text">Quick test…<br>Just answer honestly.</h1>
+  <button onclick="start()">Start</button>
+</div>
+
+<script>
+
+const text = document.getElementById("text");
+const container = document.getElementById("container");
+
+const questions = [
+
+{
+q: "When someone feels lonely…<br>what do they need most?",
+a: ["Someone to talk to", "Someone to run to", "Someone who understands"]
+},
+
+{
+q: "What matters more?",
+a: ["Listening", "Being there", "Not giving up"]
+},
+
+{
+q: "What makes someone irreplaceable?",
+a: ["They stay", "They care", "They never leave"]
+}
+
+];
+
+let index = 0;
+
+// 
+function start() {
+  showQuestion();
+}
+
+//  
+function showQuestion() {
+
+  if (index >= questions.length) {
+    analyze();
+    return;
+  }
+
+  container.innerHTML = "";
+
+  const q = document.createElement("h1");
+  q.innerHTML = questions[index].q;
+  container.appendChild(q);
+
+  questions[index].a.forEach(ans => {
+    const btn = document.createElement("button");
+    btn.innerText = ans;
+
+    btn.onclick = () => {
+      index++;
+      showQuestion();
+    };
+
+    container.appendChild(btn);
+  });
+
+}
+
+// 
+function analyze() {
+
+  container.innerHTML = "<h1>Analyzing your answers…</h1>";
+
+  setTimeout(() => {
+    reveal1();
+  }, 2500);
+}
+
+// reveal step 1
+function reveal1() {
+
+  container.innerHTML = "<h1>Result:</h1>";
+
+  setTimeout(() => {
+    reveal2();
+  }, 2000);
+}
+
+// reveal step 2
+function reveal2() {
+
+  container.innerHTML = "<h1>You didn’t describe someone you need…</h1>";
+
+  setTimeout(() => {
+    reveal3();
+  }, 3000);
+}
+
+// reveal step 3 
+function reveal3() {
+
+  container.innerHTML = "<h1>You described yourself.</h1>";
+
+  setTimeout(() => {
+    revealFinal();
+  }, 3000);
+}
+
+//  
+function revealFinal() {
+
+  container.innerHTML = "<h1>NOHA…</h1>";
+
+  setTimeout(() => {
+
+    container.innerHTML = "<h1>you are that person…</h1>";
+
+  }, 2500);
+
+  setTimeout(() => {
+
+    container.innerHTML = "<h1>you’ve always been there for me </h1>";
+
+  }, 5000);
+}
+
+</script>
+
+</body>
+</html>
