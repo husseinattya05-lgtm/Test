@@ -270,7 +270,7 @@ async function resultScene(){
 /* FINAL */
 async function revealFinal(){
 
-  // Background with meaning (warm presence feel)
+  // Background meaningful (warm presence)
   document.body.style.background = "radial-gradient(circle at center, #2b2b4f, #000000)";
 
   const overlay = document.createElement("div");
@@ -296,8 +296,8 @@ async function revealFinal(){
   let i = 0;
 
   function type(){
-    if(i < finalText.length){
-      text.innerHTML += finalText[i];
+    if(i <= finalText.length){
+      text.textContent = finalText.substring(0, i);
       i++;
       setTimeout(type, 55);
     }
